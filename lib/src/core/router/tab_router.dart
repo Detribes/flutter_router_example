@@ -42,7 +42,7 @@ class TabRouterState extends State<TabRouter> {
 
       (nestedRouterDelegate as NestedRouterDelegate).subscribeToRootRouterDelegate(rootRouterDelegate);
 
-      if (rootRouterDelegate.currentConfiguration?.lodogion.startsWith(nestedRouterDelegate.prefix) ?? false) {
+      if (rootRouterDelegate.currentConfiguration?.routePath.startsWith(nestedRouterDelegate.prefix) ?? false) {
         nestedRouterDelegate.setInitialRoutePath(rootRouterDelegate.currentConfiguration!);
       }
     }

@@ -28,18 +28,18 @@ class RootRouteInformationParser extends RouteInformationParser<RouteConfigurati
   @override
   Future<RouteConfiguration> parseRouteInformation(RouteInformation routeInformation) async {
     final uri = routeInformation.uri;
-    final String decodedLodogion = Uri.decodeComponent(
+    final String decodedPath = Uri.decodeComponent(
       Uri(
         path: uri.path.isEmpty ? '/' : uri.path,
         queryParameters: uri.queryParametersAll.isEmpty ? null : uri.queryParametersAll,
         fragment: uri.fragment.isEmpty ? null : uri.fragment,
       ).toString(),
     );
-    final String lodogion = normalizeUrl(decodedLodogion);
+    final String routePath = normalizeUrl(decodedPath);
 
     return SynchronousFuture<RouteConfiguration>(
       RouteConfiguration(
-        lodogion: lodogion,
+        routePath: routePath,
         state: routeInformation.state is Map<String, Object?> ? routeInformation.state as Map<String, Object?> : null,
       ),
     );
@@ -47,24 +47,24 @@ class RootRouteInformationParser extends RouteInformationParser<RouteConfigurati
 
   @override
   RouteInformation restoreRouteInformation(RouteConfiguration configuration) =>
-      RouteInformation(uri: Uri.parse(configuration.lodogion), state: configuration.state);
+      RouteInformation(uri: Uri.parse(configuration.routePath), state: configuration.state);
 
-  String normalizeUrl(String lodogion) {
-    lodogion = '/${lodogion.split('/').where((element) => element.isNotEmpty).toSet().toList().join('/')}';
+  String normalizeUrl(String rawPath) {
+    var normalized = '/${rawPath.split('/').where((element) => element.isNotEmpty).toSet().toList().join('/')}';
 
     if (storage.token == null) {
-      lodogion = '/$authPath';
-    } else if (lodogion.startsWith('/$authPath') || lodogion == '/') {
-      lodogion = '/$dogPath';
+      normalized = '/$authPath';
+    } else if (normalized.startsWith('/$authPath') || normalized == '/') {
+      normalized = '/$dogPath';
     } else {
-      List<String> paths = lodogion.split('/').where((element) => element.isNotEmpty).toList();
+      List<String> paths = normalized.split('/').where((element) => element.isNotEmpty).toList();
       List<String> pathsWithoutParams = [];
 
       for (final String path in paths) {
         if (path.contains('?')) {
           final uri = Uri.parse(path);
           if (!checkForParams(uri)) {
-            lodogion = '/$dogPath';
+            normalized = '/$dogPath';
             break;
           } else {
             pathsWithoutParams.add(uri.path);
@@ -74,12 +74,12 @@ class RootRouteInformationParser extends RouteInformationParser<RouteConfigurati
         }
       }
 
-      if (lodogion != '/$dogPath' &&
+      if (normalized != '/$dogPath' &&
           !legalPaths.any((element) => const ListEquality().equals(pathsWithoutParams, element))) {
-        lodogion = '/$dogPath';
+        normalized = '/$dogPath';
       }
     }
-    return lodogion;
+    return normalized;
   }
 
   bool checkForParams(Uri uri) {

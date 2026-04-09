@@ -2,5 +2,5 @@ import 'package:flutter_router_example/src/core/router/root_route_information_pa
 import 'package:flutter_router_example/src/core/router/route_configuration.dart';
 
 class AuthConfiguration extends RouteConfiguration {
-  AuthConfiguration() : super(lodogion: '/$authPath');
+  AuthConfiguration() : super(routePath: '/$authPath');
 }

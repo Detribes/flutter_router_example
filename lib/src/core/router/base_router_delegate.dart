@@ -63,7 +63,7 @@ abstract class BaseRouterDelegate extends RouterDelegate<RouteConfiguration> wit
 
     final popCompleter = Completer<T?>();
     currentRouteConfiguration = RouteConfiguration(
-      lodogion: '${currentRouteConfiguration!.lodogion}${configuration.lodogion}',
+      routePath: '${currentRouteConfiguration!.routePath}${configuration.routePath}',
       state: newState,
       popCompleter: popCompleter,
     );
@@ -77,14 +77,14 @@ abstract class BaseRouterDelegate extends RouterDelegate<RouteConfiguration> wit
   void update() => notifyListeners();
 
   List<Page<dynamic>> buildPages() {
-    List<String> paths = currentRouteConfiguration!.lodogion.split('/').where((e) => e.isNotEmpty).toList();
+    List<String> paths = currentRouteConfiguration!.routePath.split('/').where((e) => e.isNotEmpty).toList();
 
     final pages = paths
         .mapIndexed(
-          (index, lodogion) => CustomPage(
-            key: ValueKey(lodogion),
+          (index, segment) => CustomPage(
+            key: ValueKey(segment),
             allowPop: index == paths.length - 1 ? canPop() : true,
-            child: getScreen(lodogion, currentRouteConfiguration!.state),
+            child: getScreen(segment, currentRouteConfiguration!.state),
             popCompleter: index == paths.length - 1 && currentRouteConfiguration?.popCompleter != null
                 ? currentRouteConfiguration!.popCompleter
                 : null,
@@ -94,7 +94,7 @@ abstract class BaseRouterDelegate extends RouterDelegate<RouteConfiguration> wit
     return pages;
   }
 
-  Widget getScreen(String lodogion, Map<String, Object?>? state);
+  Widget getScreen(String segment, Map<String, Object?>? state);
 
   Future<bool> pop<T extends Object?>([T? result]) {
     return _navigatorKey.currentState != null
@@ -102,12 +102,12 @@ abstract class BaseRouterDelegate extends RouterDelegate<RouteConfiguration> wit
         : SynchronousFuture<bool>(false);
   }
 
-  bool canPop() => currentRouteConfiguration!.lodogion.split('/').where((e) => e.isNotEmpty).toList().length > 1;
+  bool canPop() => currentRouteConfiguration!.routePath.split('/').where((e) => e.isNotEmpty).toList().length > 1;
 
   void _trimConfiguration() {
-    final paths = currentRouteConfiguration!.lodogion.split('/').where((e) => e.isNotEmpty).toList();
+    final paths = currentRouteConfiguration!.routePath.split('/').where((e) => e.isNotEmpty).toList();
     final newConfiguration = RouteConfiguration(
-      lodogion: '/${paths.take(paths.length - 1).join('/')}',
+      routePath: '/${paths.take(paths.length - 1).join('/')}',
       state: currentRouteConfiguration!.state,
     );
     setNewRoutePath(newConfiguration);

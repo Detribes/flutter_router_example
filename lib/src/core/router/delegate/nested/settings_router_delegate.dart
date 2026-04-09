@@ -8,9 +8,9 @@ class SettingsRouterDelegate extends NestedRouterDelegate {
   String get prefix => '/$settingsPath';
 
   @override
-  Widget getScreen(String lodogion, Map<String, Object?>? state) {
+  Widget getScreen(String segment, Map<String, Object?>? state) {
     late Widget screen;
-    final uri = Uri.parse(lodogion);
+    final uri = Uri.parse(segment);
     switch (uri.path) {
       case settingsPath:
         screen = const SettingsScreen();

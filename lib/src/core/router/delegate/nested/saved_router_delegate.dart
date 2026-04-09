@@ -9,9 +9,9 @@ class SavedRouterDelegate extends NestedRouterDelegate {
   String get prefix => '/$savedPath';
 
   @override
-  Widget getScreen(String lodogion, Map<String, Object?>? state) {
+  Widget getScreen(String segment, Map<String, Object?>? state) {
     late Widget screen;
-    final uri = Uri.parse(lodogion);
+    final uri = Uri.parse(segment);
     switch (uri.path) {
       case savedPath:
         screen = const SavedScreen();

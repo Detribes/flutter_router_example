@@ -23,9 +23,9 @@ class RootRouterDelegate extends BaseRouterDelegate {
 
   @override
   List<Page<dynamic>> buildPages() {
-    if (currentRouteConfiguration!.lodogion.startsWith('/$dogPath') ||
-        currentRouteConfiguration!.lodogion.startsWith('/$savedPath') ||
-        currentRouteConfiguration!.lodogion.startsWith('/$settingsPath')) {
+    if (currentRouteConfiguration!.routePath.startsWith('/$dogPath') ||
+        currentRouteConfiguration!.routePath.startsWith('/$savedPath') ||
+        currentRouteConfiguration!.routePath.startsWith('/$settingsPath')) {
       return [
         CustomPage(
           key: const ValueKey('main'),
@@ -39,9 +39,9 @@ class RootRouterDelegate extends BaseRouterDelegate {
   }
 
   @override
-  Widget getScreen(String lodogion, Map<String, Object?>? state) {
+  Widget getScreen(String segment, Map<String, Object?>? state) {
     late Widget screen;
-    final uri = Uri.parse(lodogion);
+    final uri = Uri.parse(segment);
     switch (uri.path) {
       case authPath:
         screen = const AuthScreen();
@@ -53,11 +53,11 @@ class RootRouterDelegate extends BaseRouterDelegate {
   }
 
   int get currentTabIndex {
-    if (currentRouteConfiguration!.lodogion.startsWith('/$dogPath')) {
+    if (currentRouteConfiguration!.routePath.startsWith('/$dogPath')) {
       return 0;
-    } else if (currentRouteConfiguration!.lodogion.startsWith('/$savedPath')) {
+    } else if (currentRouteConfiguration!.routePath.startsWith('/$savedPath')) {
       return 1;
-    } else if (currentRouteConfiguration!.lodogion.startsWith('/$settingsPath')) {
+    } else if (currentRouteConfiguration!.routePath.startsWith('/$settingsPath')) {
       return 2;
     } else {
       return 0;

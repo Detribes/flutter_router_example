@@ -2,12 +2,12 @@ import 'dart:async';
 
 class RouteConfiguration<T extends Object?> {
   RouteConfiguration({
-    required this.lodogion,
+    required this.routePath,
     this.state,
     this.popCompleter,
   });
 
-  late String lodogion;
+  late String routePath;
 
   Map<String, Object?>? state;
 
@@ -17,10 +17,9 @@ class RouteConfiguration<T extends Object?> {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is RouteConfiguration && other.lodogion == lodogion && other.state == state;
+    return other is RouteConfiguration && other.routePath == routePath && other.state == state;
   }
 
   @override
-  @override
-  int get hashCode => Object.hash(lodogion, state);
+  int get hashCode => Object.hash(routePath, state);
 }

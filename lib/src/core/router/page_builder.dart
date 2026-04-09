@@ -31,7 +31,7 @@ class _PageBuilderState extends State<PageBuilder> {
   @override
   void didUpdateWidget(covariant PageBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.configuration.lodogion != widget.configuration.lodogion) {
+    if (oldWidget.configuration.routePath != widget.configuration.routePath) {
       pages = widget.pageBuilder();
       currentConfiguration = widget.configuration;
     }

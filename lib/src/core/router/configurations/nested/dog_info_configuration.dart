@@ -4,6 +4,6 @@ import 'package:flutter_router_example/src/core/router/route_configuration.dart'
 class DogInfoConfiguration extends RouteConfiguration {
   DogInfoConfiguration({required String id, required bool saved})
       : super(
-          lodogion: '/$dogInfoPath?id=$id&saved=$saved',
+          routePath: '/$dogInfoPath?id=$id&saved=$saved',
         );
 }

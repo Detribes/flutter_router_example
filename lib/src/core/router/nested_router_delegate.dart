@@ -4,14 +4,14 @@ import 'package:flutter_router_example/src/core/router/route_configuration.dart'
 
 abstract class NestedRouterDelegate extends BaseRouterDelegate {
   NestedRouterDelegate() {
-    currentRouteConfiguration = RouteConfiguration(lodogion: prefix);
+    currentRouteConfiguration = RouteConfiguration(routePath: prefix);
   }
 
   String get prefix;
 
   void subscribeToRootRouterDelegate(RootRouterDelegate rootRouterDelegate) {
     rootRouterDelegate.addListener(() {
-      if ((rootRouterDelegate.currentConfiguration?.lodogion.startsWith(prefix) ?? false) &&
+      if ((rootRouterDelegate.currentConfiguration?.routePath.startsWith(prefix) ?? false) &&
           currentRouteConfiguration != rootRouterDelegate.currentConfiguration) {
         currentRouteConfiguration = rootRouterDelegate.currentConfiguration;
         notifyListeners();
