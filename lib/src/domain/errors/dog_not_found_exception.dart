@@ -1,0 +1,1 @@
+class DogNotFoundException implements Exception {}

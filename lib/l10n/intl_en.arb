@@ -1,0 +1,17 @@
+{
+  "dogs": "Dogs",
+  "saved": "Saved",
+  "settings": "Settings",
+  "logout": "Logout",
+  "close": "Close",
+  "systemTheme": " System",
+  "darkTheme": "Dark",
+  "lightTheme": "Light",
+  "theme": "Theme",
+  "error": "Error",
+  "repeat": "repeat",
+  "authorization": "Authorization",
+  "login": "Login",
+  "dogNotFound": "Dog not found",
+  "saveDog": "Save dog"
+}
