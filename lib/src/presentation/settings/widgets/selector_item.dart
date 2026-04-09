@@ -15,10 +15,10 @@ class SelectorItem extends StatelessWidget {
   Widget build(BuildContext context) => InkWell(
         onTap: onTap,
         child: Container(
-          alignment: .center,
-          width: .infinity,
+          alignment: Alignment.center,
+          width: double.infinity,
           child: Padding(
-            padding: const .symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
               title,
               style: context.textTheme.bodyLarge,

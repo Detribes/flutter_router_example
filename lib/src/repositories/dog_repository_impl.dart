@@ -1,7 +1,7 @@
 import 'package:flutter_router_example/src/contracts/dog_repository.dart';
 import 'package:flutter_router_example/src/data/api/dog/dog_api.dart';
 import 'package:flutter_router_example/src/data/api/dog/mapper/dog_dto_mapper.dart';
-import 'package:flutter_router_example/src/data/database/dao/dog_dao_impl.dart';
+import 'package:flutter_router_example/src/data/database/dao/dog_dao.dart';
 import 'package:flutter_router_example/src/domain/entities/dog.dart';
 
 class DogRepositoryImpl implements DogRepository {

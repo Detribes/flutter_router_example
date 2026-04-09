@@ -9,7 +9,7 @@ class DogImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.all(16),
+    padding: const .all(16),
     child: SizedBox(width: 48, height: 48, child: BaseNetworkImage(imageUrl: dog.picture)),
   );
 }

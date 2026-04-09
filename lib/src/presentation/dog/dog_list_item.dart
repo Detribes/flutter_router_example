@@ -11,7 +11,7 @@ class DogListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-    behavior: HitTestBehavior.opaque,
+    behavior: .opaque,
     onTap: () => onTap(dog),
     child: Column(
       children: [

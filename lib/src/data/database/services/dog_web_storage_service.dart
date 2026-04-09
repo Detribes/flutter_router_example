@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_router_example/src/data/database/dao/dog_dao_impl.dart';
+import 'package:flutter_router_example/src/data/database/dao/dog_dao.dart';
 import 'package:flutter_router_example/src/domain/entities/dog.dart';
 import 'package:flutter_router_example/src/domain/errors/dog_not_found_exception.dart';
 import 'package:flutter_router_example/src/data/storage/storage.dart';
 
-class DogDaoWebImpl implements DogDao {
-  DogDaoWebImpl({required this.storage});
+class DogWebStorageService implements DogDao {
+  DogWebStorageService({required this.storage});
 
   final Storage storage;
 

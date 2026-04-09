@@ -1,18 +1,11 @@
+import 'package:flutter_router_example/src/data/database/dao/dog_dao.dart';
 import 'package:flutter_router_example/src/data/database/database_helper.dart';
 import 'package:flutter_router_example/src/domain/entities/dog.dart';
 import 'package:flutter_router_example/src/domain/errors/dog_not_found_exception.dart';
 import 'package:sqflite/sqflite.dart';
 
-abstract class DogDao {
-  Future<void> saveDog({required Dog dog});
-
-  Future<List<Dog>> getDogs();
-
-  Future<Dog> getDog({required String id});
-}
-
-class DogDaoImpl implements DogDao {
-  DogDaoImpl({required this.database});
+class DogDatabaseService implements DogDao {
+  DogDatabaseService({required this.database});
 
   final Database database;
 

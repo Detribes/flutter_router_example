@@ -1,5 +1,6 @@
-import 'package:flutter_router_example/src/data/database/dao/dog_dao_impl.dart';
-import 'package:flutter_router_example/src/data/database/dao/dog_dao_web_impl.dart';
+import 'package:flutter_router_example/src/data/database/dao/dog_dao.dart';
+import 'package:flutter_router_example/src/data/database/services/dog_database_service.dart';
+import 'package:flutter_router_example/src/data/database/services/dog_web_storage_service.dart';
 import 'package:flutter_router_example/src/di/factory/dependency_factory.dart';
 
 abstract class DatabaseFactory {
@@ -14,7 +15,7 @@ class DatabaseFactoryImpl implements DatabaseFactory {
   DogDao? _dogDao;
 
   @override
-  DogDao get dogDao => _dogDao ??= DogDaoImpl(database: _dependenciesFactory.database!);
+  DogDao get dogDao => _dogDao ??= DogDatabaseService(database: _dependenciesFactory.database!);
 }
 
 class DatabaseWebFactoryImpl implements DatabaseFactory {
@@ -25,5 +26,5 @@ class DatabaseWebFactoryImpl implements DatabaseFactory {
   DogDao? _dogDao;
 
   @override
-  DogDao get dogDao => _dogDao ??= DogDaoWebImpl(storage: _dependenciesFactory.storage);
+  DogDao get dogDao => _dogDao ??= DogWebStorageService(storage: _dependenciesFactory.storage);
 }

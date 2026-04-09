@@ -22,10 +22,10 @@ class DogInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-    create: (context) =>
-        DependencyScope.getBlocFactory(context).getDogInfoBloc(id: id, saved: saved)..add(const DogInfoEvent.load()),
-    child: DogInfoView(saved: saved),
-  );
+        create: (context) =>
+            DependencyScope.getBlocFactory(context).getDogInfoBloc(id: id, saved: saved)..add(const DogInfoEvent.load()),
+        child: DogInfoView(saved: saved),
+      );
 }
 
 class DogInfoView extends StatelessWidget {
@@ -35,24 +35,24 @@ class DogInfoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocConsumer<DogInfoBloc, DogInfoState>(
-    listenWhen: (prev, curr) => prev.action != curr.action && curr.action != DogInfoAction.none,
-    listener: (context, state) {
-      if (state.action == DogInfoAction.saved) {
-        _onDogSaved(context, state.id);
-      }
-    },
-    buildWhen: (prev, curr) => prev.action == curr.action || curr.action == DogInfoAction.none,
-    builder: (context, state) => Scaffold(
-      appBar: AppBar(
-        title: Text(state.dog.breed),
-        actions: [
-          if (!saved)
-            IconButton(icon: const Icon(Icons.save), tooltip: S.current.saveDog, onPressed: () => _onTapSave(context)),
-        ],
-      ),
-      body: _getContent(state, context),
-    ),
-  );
+        listenWhen: (prev, curr) => prev.action != curr.action && curr.action != DogInfoAction.none,
+        listener: (context, state) {
+          if (state.action == DogInfoAction.saved) {
+            _onDogSaved(context, state.id);
+          }
+        },
+        buildWhen: (prev, curr) => prev.action == curr.action || curr.action == DogInfoAction.none,
+        builder: (context, state) => Scaffold(
+          appBar: AppBar(
+            title: Text(state.dog.breed),
+            actions: [
+              if (!saved)
+                IconButton(icon: const Icon(Icons.save), tooltip: S.current.saveDog, onPressed: () => _onTapSave(context)),
+            ],
+          ),
+          body: _getContent(state, context),
+        ),
+      );
 
   Widget _getContent(DogInfoState state, BuildContext context) {
     switch (state.status) {

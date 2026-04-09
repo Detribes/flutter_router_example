@@ -3,10 +3,10 @@ import 'package:flutter_router_example/src/data/storage/storage.dart';
 
 class SettingsScope extends StatefulWidget {
   const SettingsScope({
-    Key? key,
+    super.key,
     required this.child,
     required this.storage,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final Storage storage;
@@ -49,10 +49,10 @@ class _SettingsScopeState extends State<SettingsScope> {
 
 class _InheritedSettingsScope extends InheritedWidget {
   const _InheritedSettingsScope({
-    required Widget child,
+    required super.child,
     required this.state,
     required this.themeMode,
-  }) : super(child: child);
+  });
 
   final _SettingsScopeState state;
   final ThemeMode themeMode;

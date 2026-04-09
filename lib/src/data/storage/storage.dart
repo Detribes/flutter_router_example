@@ -18,9 +18,7 @@ abstract class Storage {
 }
 
 class StorageImpl implements Storage {
-  StorageImpl({
-    required SharedPreferences sharedPreferences,
-  }) : _sharedPreferences = sharedPreferences;
+  StorageImpl({required SharedPreferences sharedPreferences}) : _sharedPreferences = sharedPreferences;
 
   static const _token = 'token';
   static const _dogs = 'dogs';
@@ -42,23 +40,14 @@ class StorageImpl implements Storage {
   }
 
   @override
-  Future<bool> saveToken({required String token}) => _sharedPreferences.setString(
-        _token,
-        token,
-      );
+  Future<bool> saveToken({required String token}) => _sharedPreferences.setString(_token, token);
 
   @override
   Future<void> clearToken() => _sharedPreferences.remove(_token);
 
   @override
-  Future<bool> saveDogs({required String json}) => _sharedPreferences.setString(
-        _dogs,
-        json,
-      );
+  Future<bool> saveDogs({required String json}) => _sharedPreferences.setString(_dogs, json);
 
   @override
-  Future<void> saveThemeMode(ThemeMode themeMode) => _sharedPreferences.setString(
-        _themeMode,
-        themeMode.name,
-      );
+  Future<void> saveThemeMode(ThemeMode themeMode) => _sharedPreferences.setString(_themeMode, themeMode.name);
 }

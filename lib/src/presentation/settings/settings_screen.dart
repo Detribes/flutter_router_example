@@ -24,7 +24,7 @@ class SettingsScreen extends StatelessWidget {
 }
 
 class SettingsView extends StatefulWidget {
-  const SettingsView({Key? key}) : super(key: key);
+  const SettingsView({super.key});
 
   @override
   SettingsViewState createState() => SettingsViewState();

@@ -22,8 +22,8 @@ class AuthScreen extends StatelessWidget {
 
 class AuthView extends StatelessWidget {
   const AuthView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => BlocListener<AuthBloc, AuthState>(

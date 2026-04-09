@@ -18,9 +18,9 @@ class DogScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-    create: (context) => DependencyScope.getBlocFactory(context).dogBloc..add(const Fetch()),
-    child: const DogView(),
-  );
+        create: (context) => DependencyScope.getBlocFactory(context).dogBloc..add(const Fetch()),
+        child: const DogView(),
+      );
 }
 
 class DogView extends StatefulWidget {
@@ -47,22 +47,22 @@ class DogViewState extends State<DogView> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(S.current.dogs)),
-    body: BlocBuilder<DogBloc, DogState>(
-      builder: (context, state) => state.status == DogStatus.initialLoading
-          ? const InitialLoadingView()
-          : state.status == DogStatus.initialError
-          ? InitialErrorView(onTapReload: _onTapReload)
-          : Column(
-              children: [
-                Expanded(
-                  child: DogListView(onTap: _onTapDog, dogs: state.dogs, scrollController: scrollController),
-                ),
-                if (state.status == DogStatus.loading) const LoadingView(),
-              ],
-            ),
-    ),
-  );
+        appBar: AppBar(title: Text(S.current.dogs)),
+        body: BlocBuilder<DogBloc, DogState>(
+          builder: (context, state) => state.status == DogStatus.initialLoading
+              ? const InitialLoadingView()
+              : state.status == DogStatus.initialError
+                  ? InitialErrorView(onTapReload: _onTapReload)
+                  : Column(
+                      children: [
+                        Expanded(
+                          child: DogListView(onTap: _onTapDog, dogs: state.dogs, scrollController: scrollController),
+                        ),
+                        if (state.status == DogStatus.loading) const LoadingView(),
+                      ],
+                    ),
+        ),
+      );
 
   void _onTapDog(Dog dog) => RouterScope.of(context).push(DogInfoConfiguration(id: dog.id, saved: false));
 

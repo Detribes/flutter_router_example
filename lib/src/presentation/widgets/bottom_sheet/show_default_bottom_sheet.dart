@@ -8,18 +8,17 @@ Future<dynamic> showDefaultBottomSheet({required BuildContext context, required 
       context: context,
       enableDrag: enableDrag,
       builder: (context) => Padding(
-        padding: EdgeInsets.only(top: 16, bottom: MediaQuery.of(context).viewInsets.bottom + 16),
+        padding: .only(top: 16, bottom: MediaQuery.of(context).viewInsets.bottom + 16),
         child: Wrap(
           children: [
             Column(
               children: [
-                Container(
-                  width: 24,
-                  height: 4,
+                DecoratedBox(
                   decoration: BoxDecoration(
                     color: context.colors.secondaryBackground,
                     borderRadius: const BorderRadius.all(Radius.circular(4)),
                   ),
+                  child: SizedBox(width: 24, height: 4),
                 ),
                 const SizedBox(height: 16),
                 body,

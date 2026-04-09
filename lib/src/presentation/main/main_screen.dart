@@ -39,8 +39,8 @@ class _MainScreenState extends State<MainScreen> {
               type: BottomNavigationBarType.fixed,
               onTap: (index) => TabRouter.of(context).changeTab(index),
               items: [
-                BottomNavigationBarItem(icon: const Icon(Icons.list), label: S.current.dogs),
-                BottomNavigationBarItem(icon: const Icon(Icons.save), label: S.current.saved),
+                BottomNavigationBarItem(icon: const Icon(Icons.pets), label: S.current.dogs),
+                BottomNavigationBarItem(icon: const Icon(Icons.dataset), label: S.current.saved),
                 BottomNavigationBarItem(icon: const Icon(Icons.settings), label: S.current.settings),
               ],
             ),
