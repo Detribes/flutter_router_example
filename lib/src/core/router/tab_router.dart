@@ -21,9 +21,12 @@ class TabRouter extends StatefulWidget {
 }
 
 class TabRouterState extends State<TabRouter> {
-  late List<ChildBackButtonDispatcher> childBackButtonDispatchers;
-  late List<RouterScope> routers;
   late final List<BaseRouterDelegate> delegates;
+
+  late List<ChildBackButtonDispatcher> childBackButtonDispatchers;
+
+  late List<RouterScope> routers;
+
   int currentTab = 0;
 
   @override
@@ -68,6 +71,14 @@ class TabRouterState extends State<TabRouter> {
     });
   }
 
+  @override
+  Widget build(BuildContext context) => _InheritedTabRouterScope(
+    state: this,
+    child: Builder(builder: (context) => widget.builder(context, _buildStack())),
+  );
+
+  BaseRouterDelegate delegateByPath(String path) => widget.delegateMap[path]!;
+
   void changeTab(int index, {bool updateDelegate = true}) {
     currentTab = index;
     if (updateDelegate) {
@@ -80,14 +91,6 @@ class TabRouterState extends State<TabRouter> {
     delegates[currentTab].update();
     childBackButtonDispatchers[currentTab].takePriority();
   }
-
-  BaseRouterDelegate delegateByPath(String path) => widget.delegateMap[path]!;
-
-  @override
-  Widget build(BuildContext context) => _InheritedTabRouterScope(
-    state: this,
-    child: Builder(builder: (context) => widget.builder(context, _buildStack())),
-  );
 
   Widget _buildStack() => IndexedStack(index: currentTab, children: routers);
 }

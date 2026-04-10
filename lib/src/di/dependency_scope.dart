@@ -13,18 +13,17 @@ class DependencyScope extends StatefulWidget {
 
   static BlocFactory getBlocFactory(BuildContext context) => _scopeOf(context).blocFactory;
 
+  @override
+  State<DependencyScope> createState() => _DependencyScopeState();
+
   static DependencyScope _scopeOf(BuildContext context) =>
       (context.getElementForInheritedWidgetOfExactType<_InheritedDependencyScope>()!.widget
               as _InheritedDependencyScope)
           .state
           .widget;
-
-  @override
-  State<DependencyScope> createState() => _DependencyScopeState();
 }
 
 class _DependencyScopeState extends State<DependencyScope> {
-
   @override
   void dispose() {
     widget.dependenciesFactory.close();
@@ -33,7 +32,6 @@ class _DependencyScopeState extends State<DependencyScope> {
 
   @override
   Widget build(BuildContext context) => _InheritedDependencyScope(state: this, child: widget.child);
-
 }
 
 class _InheritedDependencyScope extends InheritedWidget {

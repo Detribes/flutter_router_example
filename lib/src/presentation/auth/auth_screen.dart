@@ -9,42 +9,31 @@ import 'package:flutter_router_example/src/domain/auth/auth_state.dart';
 import 'package:flutter_router_example/generated/l10n.dart';
 
 class AuthScreen extends StatelessWidget {
-  const AuthScreen({
-    super.key,
-  });
+  const AuthScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-        create: (context) => DependencyScope.getBlocFactory(context).authBloc,
-        child: const AuthView(),
-      );
+  Widget build(BuildContext context) =>
+      BlocProvider(create: (context) => DependencyScope.getBlocFactory(context).authBloc, child: const AuthView());
 }
 
 class AuthView extends StatelessWidget {
-  const AuthView({
-    super.key,
-  });
+  const AuthView({super.key});
 
   @override
   Widget build(BuildContext context) => BlocListener<AuthBloc, AuthState>(
-        listenWhen: (prev, curr) => prev.action != curr.action && curr.action != AuthAction.none,
-        listener: (context, state) {
-          if (state.action == AuthAction.authorized) {
-            RootRouterScope.of(context).navigate(MainConfiguration());
-          }
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(S.current.authorization),
-          ),
-          body: Center(
-            child: TextButton(
-              onPressed: () => _onTapLogin(context),
-              child: Text(S.current.login),
-            ),
-          ),
-        ),
-      );
+    listenWhen: (prev, curr) => prev.action != curr.action && curr.action != AuthAction.none,
+    listener: (context, state) {
+      if (state.action == AuthAction.authorized) {
+        RootRouterScope.of(context).navigate(MainConfiguration());
+      }
+    },
+    child: Scaffold(
+      appBar: AppBar(title: Text(S.current.authorization)),
+      body: Center(
+        child: TextButton(onPressed: () => _onTapLogin(context), child: Text(S.current.login)),
+      ),
+    ),
+  );
 
   void _onTapLogin(BuildContext context) => context.read<AuthBloc>().add(const AuthEvent.login());
 }

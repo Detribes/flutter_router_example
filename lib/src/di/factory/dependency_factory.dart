@@ -31,11 +31,7 @@ abstract class DependencyFactory {
 }
 
 class DependencyFactoryImpl implements DependencyFactory {
-  DependencyFactoryImpl({
-    Database? database,
-    required Storage storage,
-  })  : _database = database,
-        _storage = storage;
+  DependencyFactoryImpl({Database? database, required Storage storage}) : _database = database, _storage = storage;
 
   final Database? _database;
 

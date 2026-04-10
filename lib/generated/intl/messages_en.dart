@@ -22,20 +22,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "authorization": MessageLookupByLibrary.simpleMessage("Authorization"),
-        "dogNotFound": MessageLookupByLibrary.simpleMessage("Dog not found"),
-        "dogs": MessageLookupByLibrary.simpleMessage("Dogs"),
-        "close": MessageLookupByLibrary.simpleMessage("Close"),
-        "darkTheme": MessageLookupByLibrary.simpleMessage("Dark"),
-        "error": MessageLookupByLibrary.simpleMessage("Error"),
-        "lightTheme": MessageLookupByLibrary.simpleMessage("Light"),
-        "login": MessageLookupByLibrary.simpleMessage("Login"),
-        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
-        "repeat": MessageLookupByLibrary.simpleMessage("repeat"),
-        "saveDog": MessageLookupByLibrary.simpleMessage("Save dog"),
-        "saved": MessageLookupByLibrary.simpleMessage("Saved"),
-        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
-        "systemTheme": MessageLookupByLibrary.simpleMessage(" System"),
-        "theme": MessageLookupByLibrary.simpleMessage("Theme")
-      };
+    "authorization": MessageLookupByLibrary.simpleMessage("Authorization"),
+    "dogNotFound": MessageLookupByLibrary.simpleMessage("Dog not found"),
+    "dogs": MessageLookupByLibrary.simpleMessage("Dogs"),
+    "close": MessageLookupByLibrary.simpleMessage("Close"),
+    "darkTheme": MessageLookupByLibrary.simpleMessage("Dark"),
+    "error": MessageLookupByLibrary.simpleMessage("Error"),
+    "lightTheme": MessageLookupByLibrary.simpleMessage("Light"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "repeat": MessageLookupByLibrary.simpleMessage("repeat"),
+    "saveDog": MessageLookupByLibrary.simpleMessage("Save dog"),
+    "saved": MessageLookupByLibrary.simpleMessage("Saved"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "systemTheme": MessageLookupByLibrary.simpleMessage(" System"),
+    "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+  };
 }

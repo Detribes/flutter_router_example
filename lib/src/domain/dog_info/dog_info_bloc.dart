@@ -12,10 +12,7 @@ class DogInfoBloc extends Bloc<DogInfoEvent, DogInfoState> {
     required this.refreshSavedRepository,
     required String id,
     required bool saved,
-  }) : super(DogInfoState(
-          id: id,
-          saved: saved,
-        )) {
+  }) : super(DogInfoState(id: id, saved: saved)) {
     on<Load>(_load);
     on<Save>(_save, transformer: droppable());
   }
@@ -23,48 +20,29 @@ class DogInfoBloc extends Bloc<DogInfoEvent, DogInfoState> {
   final DogRepository dogRepository;
   final RefreshSavedRepository refreshSavedRepository;
 
-  Future<void> _load(
-    Load event,
-    Emitter<DogInfoState> emit,
-  ) async {
-    emit(state.copyWith(
-      status: DogInfoStatus.loading,
-    ));
+  Future<void> _load(Load event, Emitter<DogInfoState> emit) async {
+    emit(state.copyWith(status: DogInfoStatus.loading));
     try {
       final dog = await (state.saved ? dogRepository.getSavedDog(id: state.id) : dogRepository.fetchDog(id: state.id));
-      emit(state.copyWith(
-        status: DogInfoStatus.data,
-        dog: dog,
-      ));
+      emit(state.copyWith(status: DogInfoStatus.data, dog: dog));
     } on DogNotFoundException {
-      emit(state.copyWith(
-        status: DogInfoStatus.dogNotFound,
-      ));
+      emit(state.copyWith(status: DogInfoStatus.dogNotFound));
     } catch (_) {
-      emit(state.copyWith(
-        status: DogInfoStatus.fetchError,
-      ));
+      emit(state.copyWith(status: DogInfoStatus.fetchError));
       rethrow;
     }
   }
 
-  Future<void> _save(
-    Save event,
-    Emitter<DogInfoState> emit,
-  ) async {
+  Future<void> _save(Save event, Emitter<DogInfoState> emit) async {
     if (state.status != DogInfoStatus.data) return;
     try {
       await dogRepository.saveDog(dog: state.dog);
       refreshSavedRepository.refreshSaved();
-      emit(state.copyWith(
-        action: DogInfoAction.saved,
-      ));
+      emit(state.copyWith(action: DogInfoAction.saved));
     } catch (_) {
       rethrow;
     } finally {
-      emit(state.copyWith(
-        action: DogInfoAction.none,
-      ));
+      emit(state.copyWith(action: DogInfoAction.none));
     }
   }
 }

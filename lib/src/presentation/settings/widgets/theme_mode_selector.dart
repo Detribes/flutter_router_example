@@ -3,36 +3,22 @@ import 'package:flutter_router_example/src/presentation/settings/widgets/selecto
 import 'package:flutter_router_example/generated/l10n.dart';
 
 class ThemeModeSelector extends StatelessWidget {
-  const ThemeModeSelector({
-    super.key,
-  });
+  const ThemeModeSelector({super.key});
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SelectorItem(
-              onTap: () => Navigator.of(context).pop(ThemeMode.system),
-              title: S.current.systemTheme,
-            ),
-            const Divider(),
-            SelectorItem(
-              onTap: () => Navigator.of(context).pop(ThemeMode.light),
-              title: S.current.lightTheme,
-            ),
-            const Divider(),
-            SelectorItem(
-              onTap: () => Navigator.of(context).pop(ThemeMode.dark),
-              title: S.current.darkTheme,
-            ),
-            const Divider(),
-            SelectorItem(
-              onTap: () => Navigator.of(context).pop(),
-              title: S.current.close,
-            ),
-          ],
-        ),
-      );
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SelectorItem(onTap: () => Navigator.of(context).pop(ThemeMode.system), title: S.current.systemTheme),
+        const Divider(),
+        SelectorItem(onTap: () => Navigator.of(context).pop(ThemeMode.light), title: S.current.lightTheme),
+        const Divider(),
+        SelectorItem(onTap: () => Navigator.of(context).pop(ThemeMode.dark), title: S.current.darkTheme),
+        const Divider(),
+        SelectorItem(onTap: () => Navigator.of(context).pop(), title: S.current.close),
+      ],
+    ),
+  );
 }

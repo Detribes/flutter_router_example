@@ -63,7 +63,7 @@ class RootRouteInformationParser extends RouteInformationParser<RouteConfigurati
       for (final String path in paths) {
         if (path.contains('?')) {
           final uri = Uri.parse(path);
-          if (!checkForParams(uri)) {
+          if (!_checkForParams(uri)) {
             normalized = '/$dogPath';
             break;
           } else {
@@ -82,7 +82,7 @@ class RootRouteInformationParser extends RouteInformationParser<RouteConfigurati
     return normalized;
   }
 
-  bool checkForParams(Uri uri) {
+  bool _checkForParams(Uri uri) {
     try {
       switch (uri.path) {
         case dogInfoPath:

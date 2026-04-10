@@ -4,12 +4,7 @@ part 'auth_state.freezed.dart';
 
 @freezed
 abstract class AuthState with _$AuthState {
-  const factory AuthState({
-    @Default(AuthAction.none) AuthAction action,
-  }) = _AuthState;
+  const factory AuthState({@Default(AuthAction.none) AuthAction action}) = _AuthState;
 }
 
-enum AuthAction {
-  none,
-  authorized,
-}
+enum AuthAction { none, authorized }

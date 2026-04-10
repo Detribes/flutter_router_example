@@ -17,19 +17,16 @@ class DarkTheme {
   static const _mainFontFamily = 'OpenSans';
 
   ThemeData get data => ThemeData(
-        scaffoldBackgroundColor: _primaryBackground,
-        fontFamily: _mainFontFamily,
-        textTheme: _textTheme,
-        bottomNavigationBarTheme: _bottomNavigationBarTheme,
-        appBarTheme: _appBarTheme,
-        dividerTheme: _dividerThemeData,
-        progressIndicatorTheme: _progressIndicatorTheme,
-        bottomSheetTheme: _bottomSheetTheme,
-        extensions: [
-          customColors,
-          themeTypeExtension,
-        ],
-      );
+    scaffoldBackgroundColor: _primaryBackground,
+    fontFamily: _mainFontFamily,
+    textTheme: _textTheme,
+    bottomNavigationBarTheme: _bottomNavigationBarTheme,
+    appBarTheme: _appBarTheme,
+    dividerTheme: _dividerThemeData,
+    progressIndicatorTheme: _progressIndicatorTheme,
+    bottomSheetTheme: _bottomSheetTheme,
+    extensions: [customColors, themeTypeExtension],
+  );
 
   late final customColors = const CustomColors(
     primary: _primary,
@@ -40,21 +37,11 @@ class DarkTheme {
     secondaryText: _secondaryText,
   );
 
-  late final themeTypeExtension = const ThemeTypeExtension(
-    themeType: ThemeType.light,
-  );
+  late final themeTypeExtension = const ThemeTypeExtension(themeType: ThemeType.light);
 
   static const _textTheme = TextTheme(
-    bodyLarge: TextStyle(
-      fontWeight: FontWeight.normal,
-      color: _primaryText,
-      fontSize: 16,
-    ),
-    bodyMedium: TextStyle(
-      fontWeight: FontWeight.normal,
-      color: _secondaryText,
-      fontSize: 14,
-    ),
+    bodyLarge: TextStyle(fontWeight: FontWeight.normal, color: _primaryText, fontSize: 16),
+    bodyMedium: TextStyle(fontWeight: FontWeight.normal, color: _secondaryText, fontSize: 14),
   );
 
   late final _bottomSheetTheme = const BottomSheetThemeData(backgroundColor: _secondaryBackground);
@@ -63,10 +50,7 @@ class DarkTheme {
 
   late final _progressIndicatorTheme = const ProgressIndicatorThemeData(color: _secondary);
 
-  late final _dividerThemeData = const DividerThemeData(
-    space: 0,
-    color: _divider,
-  );
+  late final _dividerThemeData = const DividerThemeData(space: 0, color: _divider);
 
   late final _bottomNavigationBarTheme = const BottomNavigationBarThemeData(
     selectedItemColor: _secondary,

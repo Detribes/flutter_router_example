@@ -9,30 +9,27 @@ import 'package:flutter_router_example/src/presentation/main/main_screen.dart';
 class RootRouterDelegate extends BaseRouterDelegate {
   RootRouterDelegate();
 
-  void subscribeToNestedRouter(RouterDelegate<dynamic> nestedRouterDelegate) {
-    nestedRouterDelegate.addListener(() {
-      if (currentRouteConfiguration != nestedRouterDelegate.currentConfiguration) {
-        currentRouteConfiguration = nestedRouterDelegate.currentConfiguration as RouteConfiguration?;
-        notifyListeners();
-      }
-    });
+  int get currentTabIndex {
+    if (currentRouteConfiguration!.routePath.startsWith('/$dogPath')) {
+      return 0;
+    } else if (currentRouteConfiguration!.routePath.startsWith('/$savedPath')) {
+      return 1;
+    } else if (currentRouteConfiguration!.routePath.startsWith('/$settingsPath')) {
+      return 2;
+    } else {
+      return 0;
+    }
   }
 
   @override
-  Widget build(BuildContext context) => currentConfiguration != null ? super.build(context) : Container();
+  Widget build(BuildContext context) => currentConfiguration != null ? super.build(context) : const SizedBox.shrink();
 
   @override
   List<Page<dynamic>> buildPages() {
     if (currentRouteConfiguration!.routePath.startsWith('/$dogPath') ||
         currentRouteConfiguration!.routePath.startsWith('/$savedPath') ||
         currentRouteConfiguration!.routePath.startsWith('/$settingsPath')) {
-      return [
-        CustomPage(
-          key: const ValueKey('main'),
-          allowPop: canPop(),
-          child: const MainScreen(),
-        )
-      ];
+      return [CustomPage(key: const ValueKey('main'), allowPop: canPop(), child: const MainScreen())];
     } else {
       return super.buildPages();
     }
@@ -47,20 +44,17 @@ class RootRouterDelegate extends BaseRouterDelegate {
         screen = const AuthScreen();
         break;
       default:
-        screen = Container();
+        screen = const SizedBox.shrink();
     }
     return screen;
   }
 
-  int get currentTabIndex {
-    if (currentRouteConfiguration!.routePath.startsWith('/$dogPath')) {
-      return 0;
-    } else if (currentRouteConfiguration!.routePath.startsWith('/$savedPath')) {
-      return 1;
-    } else if (currentRouteConfiguration!.routePath.startsWith('/$settingsPath')) {
-      return 2;
-    } else {
-      return 0;
-    }
+  void subscribeToNestedRouter(RouterDelegate<dynamic> nestedRouterDelegate) {
+    nestedRouterDelegate.addListener(() {
+      if (currentRouteConfiguration != nestedRouterDelegate.currentConfiguration) {
+        currentRouteConfiguration = nestedRouterDelegate.currentConfiguration as RouteConfiguration?;
+        notifyListeners();
+      }
+    });
   }
 }

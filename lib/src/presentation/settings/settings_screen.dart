@@ -18,9 +18,9 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => DependencyScope.getBlocFactory(context).settingsBloc,
-        child: const SettingsView(),
-      );
+    create: (context) => DependencyScope.getBlocFactory(context).settingsBloc,
+    child: const SettingsView(),
+  );
 }
 
 class SettingsView extends StatefulWidget {
@@ -33,26 +33,24 @@ class SettingsView extends StatefulWidget {
 class SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(S.current.settings),
-        ),
-        body: BlocListener<SettingsBloc, SettingsState>(
-          listenWhen: (prev, curr) => prev.action != curr.action && curr.action != SettingsAction.none,
-          listener: (context, state) {
-            if (state.action == SettingsAction.logout) {
-              _onLogout();
-            }
-          },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ThemeWidget(onThemePressed: _onThemePressed),
-              const Divider(),
-              LogoutWidget(onTapLogout: _onTapLogout),
-            ],
-          ),
-        ),
-      );
+    appBar: AppBar(title: Text(S.current.settings)),
+    body: BlocListener<SettingsBloc, SettingsState>(
+      listenWhen: (prev, curr) => prev.action != curr.action && curr.action != SettingsAction.none,
+      listener: (context, state) {
+        if (state.action == SettingsAction.logout) {
+          _onLogout();
+        }
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ThemeWidget(onThemePressed: _onThemePressed),
+          const Divider(),
+          LogoutWidget(onTapLogout: _onTapLogout),
+        ],
+      ),
+    ),
+  );
 
   void _onTapLogout() => context.read<SettingsBloc>().add(const SettingsEvent.logout());
 
@@ -65,8 +63,6 @@ class SettingsViewState extends State<SettingsView> {
     }
   }
 
-  Future<dynamic> _showThemeModeSelector(BuildContext context) async => showDefaultBottomSheet(
-        context: context,
-        body: const ThemeModeSelector(),
-      );
+  Future<dynamic> _showThemeModeSelector(BuildContext context) async =>
+      showDefaultBottomSheet(context: context, body: const ThemeModeSelector());
 }

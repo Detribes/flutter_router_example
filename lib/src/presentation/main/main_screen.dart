@@ -29,22 +29,22 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) => TabRouter(
-        delegateMap: delegateMap,
-        builder: (context, child) {
-          final tabRouter = TabRouter.of(context);
-          return Scaffold(
-            body: child,
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: tabRouter.currentTab,
-              type: BottomNavigationBarType.fixed,
-              onTap: (index) => TabRouter.of(context).changeTab(index),
-              items: [
-                BottomNavigationBarItem(icon: const Icon(Icons.pets), label: S.current.dogs),
-                BottomNavigationBarItem(icon: const Icon(Icons.dataset), label: S.current.saved),
-                BottomNavigationBarItem(icon: const Icon(Icons.settings), label: S.current.settings),
-              ],
-            ),
-          );
-        },
+    delegateMap: delegateMap,
+    builder: (context, child) {
+      final tabRouter = TabRouter.of(context);
+      return Scaffold(
+        body: child,
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: tabRouter.currentTab,
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) => TabRouter.of(context).changeTab(index),
+          items: [
+            BottomNavigationBarItem(icon: const Icon(Icons.pets), label: S.current.dogs),
+            BottomNavigationBarItem(icon: const Icon(Icons.dataset), label: S.current.saved),
+            BottomNavigationBarItem(icon: const Icon(Icons.settings), label: S.current.settings),
+          ],
+        ),
       );
+    },
+  );
 }

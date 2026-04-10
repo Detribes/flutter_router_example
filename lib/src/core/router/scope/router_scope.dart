@@ -8,17 +8,17 @@ class RouterScope extends InheritedWidget {
 
   final BaseRouterDelegate _routerDelegate;
 
-  BaseRouterDelegate get delegate => _routerDelegate;
-
   static RouterScope of(BuildContext context) =>
       context.getElementForInheritedWidgetOfExactType<RouterScope>()!.widget as RouterScope;
+
+  BaseRouterDelegate get delegate => _routerDelegate;
+
+  @override
+  bool updateShouldNotify(RouterScope oldWidget) => false;
 
   Future<bool> pop<T extends Object?>([T? result]) => _routerDelegate.pop(result);
 
   Future<T?> push<T extends Object?>(RouteConfiguration configuration) => _routerDelegate.push(configuration);
 
   void navigate(RouteConfiguration configuration) => _routerDelegate.navigate(configuration);
-
-  @override
-  bool updateShouldNotify(RouterScope oldWidget) => false;
 }

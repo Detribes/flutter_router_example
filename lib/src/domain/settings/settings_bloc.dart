@@ -11,13 +11,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   final AuthRepository authRepository;
 
-  Future<void> _logout(
-    Logout event,
-    Emitter<SettingsState> emit,
-  ) async {
+  Future<void> _logout(Logout event, Emitter<SettingsState> emit) async {
     await authRepository.logout();
-    emit(state.copyWith(
-      action: SettingsAction.logout,
-    ));
+    emit(state.copyWith(action: SettingsAction.logout));
   }
 }

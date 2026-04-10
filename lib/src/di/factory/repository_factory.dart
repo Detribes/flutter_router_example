@@ -21,9 +21,9 @@ class RepositoryFactoryImpl implements RepositoryFactory {
     required DependencyFactory dependencyFactory,
     required DatabaseFactory databaseFactory,
     required BackendFactory backendFactory,
-  })  : _dependencyFactory = dependencyFactory,
-        _databaseFactory = databaseFactory,
-        _backendFactory = backendFactory;
+  }) : _dependencyFactory = dependencyFactory,
+       _databaseFactory = databaseFactory,
+       _backendFactory = backendFactory;
 
   final DependencyFactory _dependencyFactory;
 
@@ -31,22 +31,18 @@ class RepositoryFactoryImpl implements RepositoryFactory {
 
   final BackendFactory _backendFactory;
 
+  final RefreshSavedRepository _refreshSavedRepository = RefreshSavedRepositoryImpl();
+
   AuthRepository? _authRepository;
 
   DogRepository? _dogRepository;
 
-  final RefreshSavedRepository _refreshSavedRepository = RefreshSavedRepositoryImpl();
+  @override
+  AuthRepository get authRepository => _authRepository ??= AuthRepositoryImpl(storage: _dependencyFactory.storage);
 
   @override
-  AuthRepository get authRepository => _authRepository ??= AuthRepositoryImpl(
-        storage: _dependencyFactory.storage,
-      );
-
-  @override
-  DogRepository get dogRepository => _dogRepository ??= DogRepositoryImpl(
-        dogApi: _backendFactory.dogApi,
-        dogDao: _databaseFactory.dogDao,
-      );
+  DogRepository get dogRepository =>
+      _dogRepository ??= DogRepositoryImpl(dogApi: _backendFactory.dogApi, dogDao: _databaseFactory.dogDao);
 
   @override
   RefreshSavedRepository get refreshSavedRepository => _refreshSavedRepository;

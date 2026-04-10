@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_router_example/src/core/router/route_configuration.dart';
 
 class PageBuilder extends StatefulWidget {
-  const PageBuilder({
-    super.key,
-    required this.builder,
-    required this.pageBuilder,
-    required this.configuration,
-  });
+  const PageBuilder({super.key, required this.builder, required this.pageBuilder, required this.configuration});
 
   final RouteConfiguration configuration;
+
   final Widget Function(BuildContext, List<Page>) builder;
+
   final List<Page> Function() pageBuilder;
 
   @override
@@ -19,13 +16,14 @@ class PageBuilder extends StatefulWidget {
 
 class _PageBuilderState extends State<PageBuilder> {
   List<Page> pages = [];
+
   late RouteConfiguration currentConfiguration;
 
   @override
   void initState() {
+    super.initState();
     pages = widget.pageBuilder();
     currentConfiguration = widget.configuration;
-    super.initState();
   }
 
   @override

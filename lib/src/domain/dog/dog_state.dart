@@ -13,9 +13,4 @@ abstract class DogState with _$DogState {
   }) = _DogState;
 }
 
-enum DogStatus {
-  initialLoading,
-  initialError,
-  loading,
-  data,
-}
+enum DogStatus { initialLoading, initialError, loading, data }

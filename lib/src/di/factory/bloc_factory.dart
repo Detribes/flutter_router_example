@@ -14,16 +14,11 @@ abstract class BlocFactory {
 
   SettingsBloc get settingsBloc;
 
-  DogInfoBloc getDogInfoBloc({
-    required String id,
-    required bool saved,
-  });
+  DogInfoBloc getDogInfoBloc({required String id, required bool saved});
 }
 
 class BlocFactoryImpl implements BlocFactory {
-  BlocFactoryImpl({
-    required RepositoryFactory repositoryFactory,
-  }) : _repositoryFactory = repositoryFactory;
+  BlocFactoryImpl({required RepositoryFactory repositoryFactory}) : _repositoryFactory = repositoryFactory;
 
   final RepositoryFactory _repositoryFactory;
 
@@ -35,22 +30,18 @@ class BlocFactoryImpl implements BlocFactory {
 
   @override
   SavedBloc get savedBloc => SavedBloc(
-        dogRepository: _repositoryFactory.dogRepository,
-        refreshSavedRepository: _repositoryFactory.refreshSavedRepository,
-      );
+    dogRepository: _repositoryFactory.dogRepository,
+    refreshSavedRepository: _repositoryFactory.refreshSavedRepository,
+  );
 
   @override
   SettingsBloc get settingsBloc => SettingsBloc(authRepository: _repositoryFactory.authRepository);
 
   @override
-  DogInfoBloc getDogInfoBloc({
-    required String id,
-    required bool saved,
-  }) =>
-      DogInfoBloc(
-        id: id,
-        saved: saved,
-        dogRepository: _repositoryFactory.dogRepository,
-        refreshSavedRepository: _repositoryFactory.refreshSavedRepository,
-      );
+  DogInfoBloc getDogInfoBloc({required String id, required bool saved}) => DogInfoBloc(
+    id: id,
+    saved: saved,
+    dogRepository: _repositoryFactory.dogRepository,
+    refreshSavedRepository: _repositoryFactory.refreshSavedRepository,
+  );
 }

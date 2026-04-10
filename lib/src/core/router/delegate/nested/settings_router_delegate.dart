@@ -16,7 +16,7 @@ class SettingsRouterDelegate extends NestedRouterDelegate {
         screen = const SettingsScreen();
         break;
       default:
-        screen = Container();
+        screen = const SizedBox.shrink();
     }
     return screen;
   }

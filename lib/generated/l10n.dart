@@ -18,17 +18,17 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +41,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -52,152 +54,77 @@ class S {
 
   /// `Dogs`
   String get dogs {
-    return Intl.message(
-      'Dogs',
-      name: 'dogs',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Dogs', name: 'dogs', desc: '', args: []);
   }
 
   /// `Saved`
   String get saved {
-    return Intl.message(
-      'Saved',
-      name: 'saved',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Saved', name: 'saved', desc: '', args: []);
   }
 
   /// `Settings`
   String get settings {
-    return Intl.message(
-      'Settings',
-      name: 'settings',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
   }
 
   /// `Logout`
   String get logout {
-    return Intl.message(
-      'Logout',
-      name: 'logout',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
   }
 
   /// `Close`
   String get close {
-    return Intl.message(
-      'Close',
-      name: 'close',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Close', name: 'close', desc: '', args: []);
   }
 
   /// ` System`
   String get systemTheme {
-    return Intl.message(
-      ' System',
-      name: 'systemTheme',
-      desc: '',
-      args: [],
-    );
+    return Intl.message(' System', name: 'systemTheme', desc: '', args: []);
   }
 
   /// `Dark`
   String get darkTheme {
-    return Intl.message(
-      'Dark',
-      name: 'darkTheme',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Dark', name: 'darkTheme', desc: '', args: []);
   }
 
   /// `Light`
   String get lightTheme {
-    return Intl.message(
-      'Light',
-      name: 'lightTheme',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Light', name: 'lightTheme', desc: '', args: []);
   }
 
   /// `Theme`
   String get theme {
-    return Intl.message(
-      'Theme',
-      name: 'theme',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Theme', name: 'theme', desc: '', args: []);
   }
 
   /// `Error`
   String get error {
-    return Intl.message(
-      'Error',
-      name: 'error',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Error', name: 'error', desc: '', args: []);
   }
 
   /// `repeat`
   String get repeat {
-    return Intl.message(
-      'repeat',
-      name: 'repeat',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('repeat', name: 'repeat', desc: '', args: []);
   }
 
   /// `Authorization`
   String get authorization {
-    return Intl.message(
-      'Authorization',
-      name: 'authorization',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Authorization', name: 'authorization', desc: '', args: []);
   }
 
   /// `Login`
   String get login {
-    return Intl.message(
-      'Login',
-      name: 'login',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Login', name: 'login', desc: '', args: []);
   }
 
   /// `Dog not found`
   String get dogNotFound {
-    return Intl.message(
-      'Dog not found',
-      name: 'dogNotFound',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Dog not found', name: 'dogNotFound', desc: '', args: []);
   }
 
   /// `Save dog`
   String get saveDog {
-    return Intl.message(
-      'Save dog',
-      name: 'saveDog',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save dog', name: 'saveDog', desc: '', args: []);
   }
 }
 
@@ -205,9 +132,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
-    ];
+    return const <Locale>[Locale.fromSubtags(languageCode: 'en')];
   }
 
   @override

@@ -18,13 +18,10 @@ class DogRouterDelegate extends NestedRouterDelegate {
         break;
       case dogInfoPath:
         Map<String, String> arguments = uri.queryParameters;
-        screen = DogInfoScreen(
-          id: arguments['id']!,
-          saved: arguments['saved']!.toLowerCase() == 'true',
-        );
+        screen = DogInfoScreen(id: arguments['id']!, saved: arguments['saved']!.toLowerCase() == 'true');
         break;
       default:
-        screen = Container();
+        screen = const SizedBox.shrink();
     }
     return screen;
   }

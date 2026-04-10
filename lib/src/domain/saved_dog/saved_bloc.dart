@@ -8,10 +8,7 @@ import 'package:flutter_router_example/src/domain/saved_dog/saved_event.dart';
 import 'package:flutter_router_example/src/domain/saved_dog/saved_state.dart';
 
 class SavedBloc extends Bloc<SavedEvent, SavedState> {
-  SavedBloc({
-    required this.dogRepository,
-    required this.refreshSavedRepository,
-  }) : super(const SavedState()) {
+  SavedBloc({required this.dogRepository, required this.refreshSavedRepository}) : super(const SavedState()) {
     on<Load>(_load);
 
     initSubscriptions();
@@ -22,19 +19,15 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
   StreamSubscription<void>? _refreshSavedStreamSubscription;
 
   void initSubscriptions() {
-    _refreshSavedStreamSubscription =
-        refreshSavedRepository.refreshSavedStream.listen((event) => add(const SavedEvent.load()));
+    _refreshSavedStreamSubscription = refreshSavedRepository.refreshSavedStream.listen(
+      (event) => add(const SavedEvent.load()),
+    );
   }
 
-  Future<void> _load(
-    Load event,
-    Emitter<SavedState> emit,
-  ) async {
+  Future<void> _load(Load event, Emitter<SavedState> emit) async {
     try {
       final List<Dog> dogs = await dogRepository.getSavedDogs();
-      emit(state.copyWith(
-        dogs: dogs,
-      ));
+      emit(state.copyWith(dogs: dogs));
     } catch (_) {
       rethrow;
     }

@@ -5,7 +5,5 @@ part 'saved_state.freezed.dart';
 
 @freezed
 abstract class SavedState with _$SavedState {
-  const factory SavedState({
-    @Default([]) List<Dog> dogs,
-  }) = _SavedState;
+  const factory SavedState({@Default([]) List<Dog> dogs}) = _SavedState;
 }

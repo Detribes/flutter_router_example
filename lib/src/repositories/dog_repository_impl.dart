@@ -5,20 +5,14 @@ import 'package:flutter_router_example/src/data/database/dao/dog_dao.dart';
 import 'package:flutter_router_example/src/domain/entities/dog.dart';
 
 class DogRepositoryImpl implements DogRepository {
-  DogRepositoryImpl({
-    required this.dogApi,
-    required this.dogDao,
-  });
+  DogRepositoryImpl({required this.dogApi, required this.dogDao});
 
-  DogApi dogApi;
+  final DogApi dogApi;
 
-  DogDao dogDao;
+  final DogDao dogDao;
 
   @override
-  Future<List<Dog>> fetchDogs({
-    required int page,
-    required int results,
-  }) async =>
+  Future<List<Dog>> fetchDogs({required int page, required int results}) async =>
       (await dogApi.fetchDogs(page: page, results: results)).map((e) => e.toDog()).toList();
 
   @override

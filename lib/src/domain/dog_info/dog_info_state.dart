@@ -14,14 +14,6 @@ abstract class DogInfoState with _$DogInfoState {
   }) = _DogInfoState;
 }
 
-enum DogInfoStatus {
-  loading,
-  fetchError,
-  dogNotFound,
-  data,
-}
+enum DogInfoStatus { loading, fetchError, dogNotFound, data }
 
-enum DogInfoAction {
-  none,
-  saved,
-}
+enum DogInfoAction { none, saved }

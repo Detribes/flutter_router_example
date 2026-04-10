@@ -1,17 +1,13 @@
 import 'dart:async';
 
 class RouteConfiguration<T extends Object?> {
-  RouteConfiguration({
-    required this.routePath,
-    this.state,
-    this.popCompleter,
-  });
+  RouteConfiguration({required this.routePath, this.state, this.popCompleter});
 
-  late String routePath;
-
-  Map<String, Object?>? state;
+  final String routePath;
 
   final Completer<T?>? popCompleter;
+
+  Map<String, Object?>? state;
 
   @override
   bool operator ==(Object other) {

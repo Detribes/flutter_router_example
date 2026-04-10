@@ -10,6 +10,6 @@ extension BoolParsing on String {
   bool parseBool() => this == 'true'
       ? true
       : this == 'false'
-          ? false
-          : throw '$this can not be parsed to boolean.';
+      ? false
+      : throw '$this can not be parsed to boolean.';
 }

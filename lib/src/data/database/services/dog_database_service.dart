@@ -11,11 +11,7 @@ class DogDatabaseService implements DogDao {
 
   @override
   Future<void> saveDog({required Dog dog}) async {
-    await database.insert(
-      dogTableName,
-      dog.toJson(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await database.insert(dogTableName, dog.toJson(), conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   @override
@@ -23,11 +19,7 @@ class DogDatabaseService implements DogDao {
 
   @override
   Future<Dog> getDog({required String id}) async {
-    final result = await database.query(
-      dogTableName,
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    final result = await database.query(dogTableName, where: 'id = ?', whereArgs: [id]);
     return result.isNotEmpty ? Dog.fromJson(result.first) : throw DogNotFoundException();
   }
 }

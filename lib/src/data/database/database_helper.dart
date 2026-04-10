@@ -20,10 +20,8 @@ class DatabaseHelper {
     });
   }
 
-  static Future<String> getDatabasePath() async => join(
-        (await path_provider.getApplicationDocumentsDirectory()).path,
-        databaseName,
-      );
+  static Future<String> getDatabasePath() async =>
+      join((await path_provider.getApplicationDocumentsDirectory()).path, databaseName);
 }
 
 Iterable<String> splitQuery(String query) =>

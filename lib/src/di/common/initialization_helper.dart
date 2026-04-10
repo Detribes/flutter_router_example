@@ -19,18 +19,11 @@ class InitializationHelperIo extends InitializationHelper {
     final Database database = await DatabaseHelper().open();
     final Storage storage = StorageImpl(sharedPreferences: await SharedPreferences.getInstance());
 
-    final dependenciesFactory = DependencyFactoryImpl(
-      database: database,
-      storage: storage,
-    );
+    final dependenciesFactory = DependencyFactoryImpl(database: database, storage: storage);
 
-    final databaseFactory = DatabaseFactoryImpl(
-      dependenciesFactory: dependenciesFactory,
-    );
+    final databaseFactory = DatabaseFactoryImpl(dependenciesFactory: dependenciesFactory);
 
-    final backendFactory = BackendFactoryImpl(
-      dependenciesFactory: dependenciesFactory,
-    );
+    final backendFactory = BackendFactoryImpl(dependenciesFactory: dependenciesFactory);
 
     final repositoryFactory = RepositoryFactoryImpl(
       dependencyFactory: dependenciesFactory,
@@ -40,10 +33,7 @@ class InitializationHelperIo extends InitializationHelper {
 
     final blocFactory = BlocFactoryImpl(repositoryFactory: repositoryFactory);
 
-    return InitializationResult(
-      dependenciesFactory: dependenciesFactory,
-      blocFactory: blocFactory,
-    );
+    return InitializationResult(dependenciesFactory: dependenciesFactory, blocFactory: blocFactory);
   }
 }
 
@@ -52,17 +42,11 @@ class InitializationHelperWeb extends InitializationHelper {
   Future<InitializationResult> init() async {
     final Storage storage = StorageImpl(sharedPreferences: await SharedPreferences.getInstance());
 
-    final dependenciesFactory = DependencyFactoryImpl(
-      storage: storage,
-    );
+    final dependenciesFactory = DependencyFactoryImpl(storage: storage);
 
-    final databaseFactory = DatabaseWebFactoryImpl(
-      dependenciesFactory: dependenciesFactory,
-    );
+    final databaseFactory = DatabaseWebFactoryImpl(dependenciesFactory: dependenciesFactory);
 
-    final backendFactory = BackendFactoryImpl(
-      dependenciesFactory: dependenciesFactory,
-    );
+    final backendFactory = BackendFactoryImpl(dependenciesFactory: dependenciesFactory);
 
     final repositoryFactory = RepositoryFactoryImpl(
       dependencyFactory: dependenciesFactory,
@@ -72,9 +56,6 @@ class InitializationHelperWeb extends InitializationHelper {
 
     final blocFactory = BlocFactoryImpl(repositoryFactory: repositoryFactory);
 
-    return InitializationResult(
-      dependenciesFactory: dependenciesFactory,
-      blocFactory: blocFactory,
-    );
+    return InitializationResult(dependenciesFactory: dependenciesFactory, blocFactory: blocFactory);
   }
 }

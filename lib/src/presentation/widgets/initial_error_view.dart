@@ -9,18 +9,12 @@ class InitialErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              S.current.error,
-              style: context.textTheme.bodyLarge,
-            ),
-            ElevatedButton(
-              onPressed: onTapReload,
-              child: Text(S.current.repeat),
-            ),
-          ],
-        ),
-      );
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(S.current.error, style: context.textTheme.bodyLarge),
+        ElevatedButton(onPressed: onTapReload, child: Text(S.current.repeat)),
+      ],
+    ),
+  );
 }

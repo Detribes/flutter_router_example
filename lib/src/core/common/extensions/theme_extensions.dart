@@ -28,15 +28,14 @@ class CustomColors extends ThemeExtension<CustomColors> {
     Color? secondaryBackground,
     Color? primaryText,
     Color? secondaryText,
-  }) =>
-      CustomColors(
-        primary: primary ?? this.primary,
-        secondary: secondary ?? this.secondary,
-        primaryBackground: primaryBackground ?? this.primaryBackground,
-        secondaryBackground: secondaryBackground ?? this.secondaryBackground,
-        primaryText: primaryText ?? this.primaryText,
-        secondaryText: secondaryText ?? this.secondaryText,
-      );
+  }) => CustomColors(
+    primary: primary ?? this.primary,
+    secondary: secondary ?? this.secondary,
+    primaryBackground: primaryBackground ?? this.primaryBackground,
+    secondaryBackground: secondaryBackground ?? this.secondaryBackground,
+    primaryText: primaryText ?? this.primaryText,
+    secondaryText: secondaryText ?? this.secondaryText,
+  );
 
   @override
   ThemeExtension<CustomColors> lerp(ThemeExtension<CustomColors>? other, double t) {
@@ -66,16 +65,13 @@ extension ThemeContext on BuildContext {
 }
 
 class ThemeTypeExtension extends ThemeExtension<ThemeTypeExtension> {
+  const ThemeTypeExtension({required this.themeType});
+
   final ThemeType themeType;
 
-  const ThemeTypeExtension({
-    required this.themeType,
-  });
-
   @override
-  ThemeExtension<ThemeTypeExtension> copyWith({ThemeType? themeType}) => ThemeTypeExtension(
-        themeType: themeType ?? this.themeType,
-      );
+  ThemeExtension<ThemeTypeExtension> copyWith({ThemeType? themeType}) =>
+      ThemeTypeExtension(themeType: themeType ?? this.themeType);
 
   @override
   ThemeExtension<ThemeTypeExtension> lerp(ThemeExtension<ThemeTypeExtension>? other, double t) =>

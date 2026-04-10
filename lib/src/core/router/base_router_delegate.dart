@@ -11,6 +11,7 @@ abstract class BaseRouterDelegate extends RouterDelegate<RouteConfiguration> wit
   BaseRouterDelegate();
 
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
   RouteConfiguration? currentRouteConfiguration;
 
   @override
@@ -41,7 +42,9 @@ abstract class BaseRouterDelegate extends RouterDelegate<RouteConfiguration> wit
 
   @override
   Future<void> setNewRoutePath(RouteConfiguration configuration) {
-    if (currentRouteConfiguration == configuration) return SynchronousFuture<void>(null);
+    if (currentRouteConfiguration == configuration) {
+      return SynchronousFuture<void>(null);
+    }
     currentRouteConfiguration = configuration;
     notifyListeners();
     return SynchronousFuture<void>(null);

@@ -22,8 +22,8 @@ class ThemeWidget extends StatelessWidget {
               currentTheme == ThemeMode.system
                   ? S.current.systemTheme
                   : currentTheme == ThemeMode.light
-                      ? S.current.lightTheme
-                      : S.current.darkTheme,
+                  ? S.current.lightTheme
+                  : S.current.darkTheme,
               style: context.textTheme.bodyMedium,
             ),
           ],

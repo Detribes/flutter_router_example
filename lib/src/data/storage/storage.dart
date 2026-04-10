@@ -20,11 +20,11 @@ abstract class Storage {
 class StorageImpl implements Storage {
   StorageImpl({required SharedPreferences sharedPreferences}) : _sharedPreferences = sharedPreferences;
 
+  final SharedPreferences _sharedPreferences;
+
   static const _token = 'token';
   static const _dogs = 'dogs';
   static const _themeMode = 'themeMode';
-
-  final SharedPreferences _sharedPreferences;
 
   @override
   String? get token => _sharedPreferences.getString(_token);
